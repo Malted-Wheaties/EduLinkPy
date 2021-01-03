@@ -1,5 +1,6 @@
 # EduLinkPy
----
+
+
 ## Variable naming
 
 Important variables are commented at the top in upper case.
@@ -48,7 +49,7 @@ Uses `requests.post()` to send a HTTP POST request to **url** containing **body*
     * Gender
     * Forename
     * Surname
-    * username
+    * Username
     * Portrait photo
     
 * Menu items (timetable, documents, catering, homework etc.)
