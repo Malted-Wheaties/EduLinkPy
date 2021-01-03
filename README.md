@@ -1,7 +1,5 @@
 # EduLinkPy
-
 ---
-
 ## Variable naming
 
 Important variables are commented at the top in upper case.
