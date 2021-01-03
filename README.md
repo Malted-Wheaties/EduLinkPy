@@ -33,7 +33,7 @@ Is sent in the POST request.
 
 
 ### headers
-The header to be sent with the PIST request.
+The header to be sent with the POST request.
 
 Is of type `dict`
 
