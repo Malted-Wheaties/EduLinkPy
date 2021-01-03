@@ -5,7 +5,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/Malted-Wheaties/EduLinkPy)
 
 ![GitHub file count](https://img.shields.io/github/directory-file-count/Malted-Wheaties/EduLinkPy)
-![GitHub repo size](https://img.shields.io/github/repo-size/Malted-Wheaties/EdLinkPy)
+![GitHub repo size](https://img.shields.io/github/repo-size/Malted-Wheaties/EduLinkPy)
 
 ## Setup 
 ```
