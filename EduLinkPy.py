@@ -3,8 +3,6 @@ import json
 import base64
 import os
 from uuid import uuid4
-from password import password as PASSWORD ##### TEMPORARY #####
-USERNAME = "dixonbw" ##### TEMPORARY #####
 
 # Important variables;
 """
@@ -17,9 +15,9 @@ PASSWORD
 AUTHTOKEN
 """
 
-SCHOOL_CODE = input("\tEnter your school code")
-USERNAME  = input("\tEnter your EduLink username")
-PASSWORD  = input("\tEnter your EduLink password")
+SCHOOL_CODE = input("Enter your school code\t")
+USERNAME  = input("Enter your EduLink username\t")
+PASSWORD  = input("Enter your EduLink password\t")
 
 #Because the API returns the info as a string, not JSON, it has indents and newlines to make it look like JSON, which makes it harder to parse. I used a lazy method of picking through the response to get the school server.
 def Find_Info(_request, _query):
