@@ -71,7 +71,7 @@ def School_Details(_school_svr, _save_logo, _print_logo):
         details_request = requests.post(details_url, data=details_body, headers=details_headers) # type requests.models.Response
         if "false" in Find_Info(details_request, "success", 1).lower():
                 exit(Find_Info(details_request, "error"))
-
+        print(details_request.text)#DEBUG
         school_name = Find_Info(details_request, "name")
 
         school_logo_base64 = Find_Info(details_request, "logo")
@@ -127,7 +127,7 @@ def Authtoken(_usr, _pwd, _school_svr):
         login_body = json.dumps(login_body_raw) # type str
         login_headers = {"Content-Type":"application/json;charset=utf-8"}
         login_request = requests.post(login_url, data=login_body, headers=login_headers) # type requests.models.Response
-        print(login_request)
+        print(login_request.text)#DEBUG
         if "false" in Find_Info(login_request, "success", 1).lower():
                exit(Find_Info(login_request, "error"))
         
