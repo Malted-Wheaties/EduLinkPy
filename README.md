@@ -1,6 +1,7 @@
 # EduLinkPy
 
 
+
 ## Variable naming
 
 Important variables are commented at the top in upper case.
@@ -8,10 +9,12 @@ Of which are recieved by the server are preceeded with `_s`.
 
 Argument variables are preceeded with `_`.
 
+
+
 ## Each request method may contain;
 
 ### url
-The school server (usually in the format https://_schoolcode_.edulinkone.com/api/) is combined with the method name to create a url to which the request will be sent.
+The server (usually in the format https://_schoolcode_.edulinkone.com/api/) is combined with the method name to create a url to which the request will be sent.
 
 Is of type `string`
 
