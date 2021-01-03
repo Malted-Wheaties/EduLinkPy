@@ -2,6 +2,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/Malted-Wheaties/EduLinkPy?color=purple)
 ![GitHub issues](https://img.shields.io/github/issues/Malted-Wheaties/EduLinkPy?color=purple)
 ![GitHub version](https://img.shields.io/github/v/tag/Malted-Wheaties/EduLinkPy?color=purple)
+https://img.shields.io/github/last-commit/Malted-Wheaties/EduLinkPy
 
 ## Setup 
 ```
