@@ -4,6 +4,9 @@
 ![GitHub version](https://img.shields.io/github/v/tag/Malted-Wheaties/EduLinkPy?color=purple)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Malted-Wheaties/EduLinkPy)
 
+![GitHub file count](https://img.shields.io/github/directory-file-count/Malted-Wheaties/EduLinkPy)
+![GitHub repo size](https://img.shields.io/github/repo-size/Malted-Wheaties/EdLinkPy)
+
 ## Setup 
 ```
 git clone https://github.com/Malted-Wheaties/EduLinkPy.git
