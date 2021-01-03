@@ -25,7 +25,7 @@ def Find_Info(_request, _query):
         request_text_split = request_text.split('"')
         for text in request_text_split:
                 if _query in text:
-                        index = request_text_split.index(text)
+                        index = request_text_split.index(text) + 2 # +0 would be the label, +1 would be a colon and a space, +2 gives the content corresponding to the query
                         return request_text_split[index]
         return "QUERY" + _query + " NOT FOUND"
 
@@ -44,7 +44,7 @@ def School_Server(_school_code):
         provisioning_body = json.dumps(provisioning_body_raw)
         provisioning_request = requests.post(provisioning_url, data=provisioning_body) # type requests.models.Response
 
-        return Find_Info(provisioning_request, "http")
+        return Find_Info(provisioning_request, "server")
 
 
 def School_Details(_school_svr, _save_logo):
