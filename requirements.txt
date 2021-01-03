@@ -1,0 +1,5 @@
+Pillow 
+ascii_magic
+uuid
+requests
+python-dotenv
