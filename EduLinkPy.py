@@ -91,11 +91,6 @@ def School_Details(_school_svr, _save_logo, _print_logo):
                 return cv2.cvtColor(np.array(image), cv2.COLOR_BGR2RGB)
                 """
 
-                try:
-                        logo = Image.open(SCHOOL_LOGO_FILE_PATH)
-                except:
-                        print("Unable to find image at " + SCHOOL_LOGO_FILE_PATH + ", has it been moved?")
-
         if _print_logo:
                 school_logo_ascii = ascii_magic.from_image_file(SCHOOL_LOGO_FILE_PATH)
                 ascii_magic.to_terminal(school_logo_ascii)
@@ -113,18 +108,18 @@ def Authtoken(_usr, _pwd, _school_svr):
                         "ui_info":{
                                 "format":2,
                                 "version":"0.5.114",
-                                "git_sha":"128522674"
+                                "git_sha":str(uuid4())
                         },
                         "fcm_token_old":"none",
                         "username":_usr,
                         "password":_pwd,
                         "establishment_id":"2"
                 },
-                "uuid":"128522674",#str(uuid4()),
+                "uuid":str(uuid4()),
                 "id":"1"
         }
         login_body = json.dumps(login_body_raw) # type str
-        login_headers = {"Content-Type":"application/json;charset=utf-8","User-Agent":"Mozilla/5.0 (X11; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/84.0"}
+        login_headers = {"Content-Type":"application/json;charset=utf-8"}
         login_request = requests.post(login_url, data=login_body, headers=login_headers) # type requests.models.Response
         if "false" in Find_Info(login_request, "success", 1).lower():
                exit(Find_Info(login_request, "error"))
@@ -140,5 +135,3 @@ s_SCHOOL_NAME = School_Details(s_SCHOOL_SERVER, True, True)
 USERNAME  = input("Enter your EduLink username\t")
 PASSWORD  = getpass("Enter your EduLink password\t")
 AUTHTOKEN = Authtoken(USERNAME, PASSWORD, s_SCHOOL_SERVER)
-
-print(AUTHTOKEN)
