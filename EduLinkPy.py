@@ -3,6 +3,9 @@ import json
 import base64
 import os
 from uuid import uuid4
+from getpass import getpass
+from PIL import Image
+import ascii_magic
 
 # Important variables;
 """
@@ -15,17 +18,13 @@ PASSWORD
 AUTHTOKEN
 """
 
-SCHOOL_CODE = input("Enter your school code\t")
-USERNAME  = input("Enter your EduLink username\t")
-PASSWORD  = input("Enter your EduLink password\t")
 
-#Because the API returns the info as a string, not JSON, it has indents and newlines to make it look like JSON, which makes it harder to parse. I used a lazy method of picking through the response to get the school server.
-def Find_Info(_request, _query):
+def Find_Info(_request, _query, _index_add = 2): #Because the API returns the info as a string, not JSON, it has indents and newlines to make it look like JSON, which makes it harder to parse. I used a lazier method of picking through the response to get the query's content.
         request_text = _request.text
         request_text_split = request_text.split('"')
         for text in request_text_split:
                 if _query in text:
-                        index = request_text_split.index(text) + 2 # +0 would be the label, +1 would be a colon and a space, +2 gives the content corresponding to the query
+                        index = request_text_split.index(text) + _index_add # +0 would be the label, +1 would be a colon and a space, +2 gives the content corresponding to the query
                         return request_text_split[index]
         return "QUERY" + _query + " NOT FOUND"
 
@@ -43,11 +42,13 @@ def School_Server(_school_code):
         }
         provisioning_body = json.dumps(provisioning_body_raw)
         provisioning_request = requests.post(provisioning_url, data=provisioning_body) # type requests.models.Response
+        if "false" in Find_Info(provisioning_request, "success", 1).lower():
+               exit(Find_Info(provisioning_request, "error"))
 
         return Find_Info(provisioning_request, "server")
 
 
-def School_Details(_school_svr, _save_logo):
+def School_Details(_school_svr, _save_logo, _print_logo):
         details_url = _school_svr + "?method=EduLink.SchoolDetails"
         details_body_raw = {
                 "id":"1",
@@ -62,19 +63,20 @@ def School_Details(_school_svr, _save_logo):
         details_body = json.dumps(details_body_raw)
         details_headers = {"Content-Type":"application/json;charset=utf-8"}
         details_request = requests.post(details_url, data=details_body, headers=details_headers) # type requests.models.Response
+        if "false" in Find_Info(details_request, "success", 1).lower():
+                exit(Find_Info(details_request, "error"))
 
         school_name = Find_Info(details_request, "name")
 
-        if (_save_logo):
+        school_logo_base64 = Find_Info(details_request, "logo")
+        school_logo_64 = base64.b64decode(school_logo_base64) # type bytes
+        file_directory = os.getcwd() + "/"
+        file_name = school_name + " Logo.png"
+        SCHOOL_LOGO_FILE_PATH = file_directory + file_name
 
-                #region Save Image
-                school_logo_base64 = Find_Info(details_request, "logo")
-                school_logo = base64.b64decode(school_logo_base64) # type bytes
-                file_directory = os.getcwd() + "/"
-                file_name = school_name + " Logo.png"
-                SCHOOL_LOGO_FILE_PATH = file_directory + file_name
+        if _save_logo:
                 with open (SCHOOL_LOGO_FILE_PATH, "wb") as f:
-                        f.write(school_logo)
+                        f.write(school_logo_64)
                 f.close()
 
                 #To return converted image without saving;
@@ -88,7 +90,15 @@ def School_Details(_school_svr, _save_logo):
                 image = Image.open(io.BytesIO(school_logo))
                 return cv2.cvtColor(np.array(image), cv2.COLOR_BGR2RGB)
                 """
-                #endregion
+
+                try:
+                        logo = Image.open(SCHOOL_LOGO_FILE_PATH)
+                except:
+                        print("Unable to find image at " + SCHOOL_LOGO_FILE_PATH + ", has it been moved?")
+
+        if _print_logo:
+                school_logo_ascii = ascii_magic.from_image_file(SCHOOL_LOGO_FILE_PATH)
+                ascii_magic.to_terminal(school_logo_ascii)
 
         return school_name
 
@@ -116,18 +126,19 @@ def Authtoken(_usr, _pwd, _school_svr):
         login_body = json.dumps(login_body_raw) # type str
         login_headers = {"Content-Type":"application/json;charset=utf-8","User-Agent":"Mozilla/5.0 (X11; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/84.0"}
         login_request = requests.post(login_url, data=login_body, headers=login_headers) # type requests.models.Response
-
-        ##### TEMPORARY #####
-        with open("/home/ben/dev/edulink/login.txt", "w+") as f:
-                f.write(login_request.text)
-        f.close()
-
+        if "false" in Find_Info(login_request, "success", 1).lower():
+               exit(Find_Info(login_request, "error"))
+        
         return Find_Info(login_request, "authtoken")
 
 
+SCHOOL_CODE = input("Enter your school code\t")
 s_SCHOOL_SERVER = School_Server(SCHOOL_CODE)
-s_SCHOOL_NAME = School_Details(s_SCHOOL_SERVER, True)
+
+s_SCHOOL_NAME = School_Details(s_SCHOOL_SERVER, True, True)
+
+USERNAME  = input("Enter your EduLink username\t")
+PASSWORD  = getpass("Enter your EduLink password\t")
 AUTHTOKEN = Authtoken(USERNAME, PASSWORD, s_SCHOOL_SERVER)
-print(s_SCHOOL_SERVER)
-print(s_SCHOOL_NAME)
+
 print(AUTHTOKEN)
