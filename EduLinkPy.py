@@ -6,6 +6,7 @@ from uuid import uuid4
 from getpass import getpass
 from PIL import Image
 import ascii_magic
+from dotenv import load_dotenv
 
 # Important variables;
 """
@@ -18,6 +19,11 @@ PASSWORD
 AUTHTOKEN
 """
 
+project_folder = os.path.expanduser('./')  # adjust as appropriate
+load_dotenv(os.path.join(project_folder, '.env'))
+USERNAME = os.getenv("USERNAME")
+PASSWORD = os.getenv("PASSWORD")
+SCHOOL_CODE = os.getenv("SCHOOL_CODE")
 
 def Find_Info(_request, _query, _index_add = 2): #Because the API returns the info as a string, not JSON, it has indents and newlines to make it look like JSON, which makes it harder to parse. I used a lazier method of picking through the response to get the query's content.
         request_text = _request.text
@@ -102,7 +108,7 @@ def Authtoken(_usr, _pwd, _school_svr):
         login_url = _school_svr + "?method=EduLink.Login"
         login_body_raw = {
                 "jsonrpc":"2.0",
-                "method":"Edulink.Login",
+                "method":"EduLink.Login",
                 "params":{
                         "from_app":False,
                         "ui_info":{
@@ -121,17 +127,12 @@ def Authtoken(_usr, _pwd, _school_svr):
         login_body = json.dumps(login_body_raw) # type str
         login_headers = {"Content-Type":"application/json;charset=utf-8"}
         login_request = requests.post(login_url, data=login_body, headers=login_headers) # type requests.models.Response
+        print(login_request)
         if "false" in Find_Info(login_request, "success", 1).lower():
                exit(Find_Info(login_request, "error"))
         
         return Find_Info(login_request, "authtoken")
 
-
-SCHOOL_CODE = input("Enter your school code\t")
 s_SCHOOL_SERVER = School_Server(SCHOOL_CODE)
-
-s_SCHOOL_NAME = School_Details(s_SCHOOL_SERVER, True, True)
-
-USERNAME  = input("Enter your EduLink username\t")
-PASSWORD  = getpass("Enter your EduLink password\t")
+s_SCHOOL_NAME = School_Details(s_SCHOOL_SERVER, False, False)
 AUTHTOKEN = Authtoken(USERNAME, PASSWORD, s_SCHOOL_SERVER)
