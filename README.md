@@ -1,7 +1,6 @@
 # EduLinkPy - A Python port of Overnet Data's EdulinkOne service.
 ![GitHub top language](https://img.shields.io/github/languages/top/Malted-Wheaties/EduLinkPy?color=purple)
 ![GitHub issues](https://img.shields.io/github/issues/Malted-Wheaties/EduLinkPy?color=purple)
-![GitHub directory file count](https://img.shields.io/github/directory-file-count/Malted-Wheaties/EduLinkPy?color=purple)
 
 ## Setup 
 ```
