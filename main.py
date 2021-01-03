@@ -1,6 +1,6 @@
 import requests
 import json
-import keys
+from password import password
 from uuid import uuid4
 import base64
 import os
@@ -116,7 +116,7 @@ login_body_raw = { # type dict
                 },
                 "fcm_token_old":"none",
                 "username":"dixonbw",
-                "password":"letmeIn12",
+                "password":password,
                 "establishment_id":"2"
                 
         },
