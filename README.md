@@ -44,11 +44,13 @@ Uses `requests.post()` to send a HTTP POST request to **url** containing **body*
 * The school logo encoded in base64
 * The session's account authtoken
 * User information, including;
-⋅⋅* Account ID
-⋅⋅* Gender
-⋅⋅* Forename
-⋅⋅* Surname
-⋅⋅* username
-⋅⋅* Portrait
+
+    * Account ID
+    * Gender
+    * Forename
+    * Surname
+    * username
+    * Portrait photo
+    
 * Menu items (timetable, documents, catering, homework etc.)
 * Whether the user can create messages to send
