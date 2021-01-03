@@ -1,11 +1,12 @@
 # EduLinkPy - A Python port of Overnet Data's EdulinkOne service.
-![GitHub top language](https://img.shields.io/github/languages/top/Malted-Wheaties/EduLinkPy?color=purple)
-![GitHub issues](https://img.shields.io/github/issues/Malted-Wheaties/EduLinkPy?color=purple)
-![GitHub version](https://img.shields.io/github/v/tag/Malted-Wheaties/EduLinkPy?color=purple)
+![GitHub top language](https://img.shields.io/github/languages/top/Malted-Wheaties/EduLinkPy)
+![GitHub issues](https://img.shields.io/github/issues/Malted-Wheaties/EduLinkPy)
+![GitHub version](https://img.shields.io/github/v/tag/Malted-Wheaties/EduLinkPy)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Malted-Wheaties/EduLinkPy)
 
 ![GitHub file count](https://img.shields.io/github/directory-file-count/Malted-Wheaties/EduLinkPy)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Malted-Wheaties/EduLinkPy)
+![Github repo size](https://img.shields.io/tokei/lines/github/Malted-Wheaties/EduLinkPy)
 
 ## Setup 
 ```
