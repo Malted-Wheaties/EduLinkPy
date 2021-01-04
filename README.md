@@ -17,7 +17,7 @@
 ## See the [wiki](https://github.com/Malted-Wheaties/EduLinkPy/wiki) for code reference & setup guide.
 
 
-### Roadmap
+## Roadmap
 * AUR
 * C# port
 * Release as .unitypackage
