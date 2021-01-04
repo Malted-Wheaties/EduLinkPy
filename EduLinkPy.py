@@ -134,8 +134,6 @@ def Set_Account_Info(_usr, _pwd, _school_svr):
         FORENAME = Find_Info(login_request, "forename")
         SURNAME = Find_Info(login_request, "surname")
         full_name = FORENAME + " " + SURNAME
-        print("Hello, " + full_name)
-
 
         portrait_base64 = Find_Info(login_request, "photo")
         portrait_64 = base64.b64decode(portrait_base64) # type bytes
@@ -150,6 +148,8 @@ def Set_Account_Info(_usr, _pwd, _school_svr):
 
         portrait_ascii = ascii_magic.from_image_file(PORTRAIT_FILE_PATH)
         ascii_magic.to_terminal(portrait_ascii)
+
+        print("Hello, " + full_name)
 
 
 s_SCHOOL_SERVER = School_Server(SCHOOL_CODE)
