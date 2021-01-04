@@ -11,7 +11,7 @@
 
 
 
-### See the [releases page](https://github.com/Malted-Wheaties/EduLinkPy/releases/)
+## [Release Page](https://github.com/Malted-Wheaties/EduLinkPy/releases/)
 
 
 ## See the [wiki](https://github.com/Malted-Wheaties/EduLinkPy/wiki) for code reference & setup guide.
