@@ -24,14 +24,6 @@ SURNAME
 
 SCHOOL_CODE = input("Enter your school code: ")
 
-def Flatten_JSON(_unflat_response_json):
-        flat_json = {}
-        flat_json[''[:-1]] = _unflat_response_json
-        for text in flat_json:
-                print(text)
-                text.replace(' ', '')
-        return flat_json
-
 def Find_Info(_request, _query, _index_add = 2): #Because the API returns the info as a string, not JSON, it has indents and newlines to make it look like JSON, which makes it harder to parse. I used a lazier method of picking through the response to get the query's content.
         request_text = _request.text
         request_text_split = request_text.split('"')
@@ -56,7 +48,6 @@ def School_Server(_school_code):
         provisioning_body = json.dumps(provisioning_body_raw)
         provisioning_request = requests.post(provisioning_url, data=provisioning_body) # type requests.models.Response
 
-        print(Flatten_JSON(provisioning_request.text))
         if "false" in Find_Info(provisioning_request, "success", 1).lower():
                exit(Find_Info(provisioning_request, "error"))
 
@@ -138,7 +129,7 @@ def Set_Account_Info(_usr, _pwd, _school_svr):
 
         
         AUTHTOKEN = Find_Info(login_request, "authtoken")
-        
+
         GENDER = Find_Info(login_request, "gender")
         FORENAME = Find_Info(login_request, "forename")
         SURNAME = Find_Info(login_request, "surname")
