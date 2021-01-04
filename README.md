@@ -12,7 +12,11 @@
 
 ### See the [releases page](https://github.com/Malted-Wheaties/EduLinkPy/releases/)
 
-#### TODO: AUR
-
 
 ## See the [wiki](https://github.com/Malted-Wheaties/EduLinkPy/wiki) for code reference & setup guide.
+
+
+### Roadmap
+* AUR
+* C# port
+* Release as .unitypackage
