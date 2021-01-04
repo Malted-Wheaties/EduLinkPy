@@ -18,5 +18,7 @@ python3 EduLinkPy.py
 
 ### For plebs, see the [releases page](https://github.com/Malted-Wheaties/EduLinkPy/releases/)
 
+#### TODO: AUR APT, PIP
+
 
 ## See the [wiki](https://github.com/Malted-Wheaties/EduLinkPy/wiki) for code reference.
