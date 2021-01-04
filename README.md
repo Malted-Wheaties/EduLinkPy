@@ -12,10 +12,11 @@
 git clone https://github.com/Malted-Wheaties/EduLinkPy.git
 cd EduLinkPy
 python3 -m pip install -r requirements.txt
-echo "export USERNAME=YOURUSERNAMEHERE" >> .env
-echo "export PASSWORD=YOURPASSWORDHERE" >> .env
-echo "export SCHOOL_CODE=YOURSCHOOLCODE" >> .env
+
+python3 EduLinkPy.py
 ```
+
+### For plebs, see the [releases page](https://github.com/Malted-Wheaties/EduLinkPy/releases/)
 
 
 See the [wiki](https://github.com/Malted-Wheaties/EduLinkPy/wiki) for code reference.
